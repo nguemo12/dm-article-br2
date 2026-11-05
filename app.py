@@ -1,5 +1,7 @@
 """Articles transcoding tool (AS400 -> D365 data migration templates)."""
 
+import os
+
 import numpy as np
 import pandas as pd
 import gradio as gr
@@ -662,4 +664,8 @@ with gr.Blocks(title="Articles Transcoding") as iface:
 
 
 if __name__ == "__main__":
-    iface.queue().launch(css=".footer {visibility: hidden;}")
+    iface.queue().launch(
+        server_name="0.0.0.0",
+        server_port=int(os.environ.get("PORT", 7860)),
+        css=".footer {visibility: hidden;}",
+    )
